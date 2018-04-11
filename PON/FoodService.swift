@@ -30,7 +30,7 @@ protocol Gettable {
 
 // API request
 struct FoodService: Gettable {
-     typealias Data = [Food]
+    typealias Data = [Food]
     
     func get(completionHandler: (Result<[Food]>) -> Void) {
         // make asynchronous API call

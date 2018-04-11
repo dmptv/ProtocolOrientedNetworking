@@ -10,6 +10,7 @@ import XCTest
 @testable import PON
 
 class Fake_FoodService: Gettable {
+    typealias Data = [Food]
     
     init() {
         self.food = [Food(), Food(), Food(), Food()]
@@ -52,6 +53,7 @@ class PONTests: XCTestCase {
         let fakeFoodService = Fake_FoodService()
         viewController.getFood(fromService: fakeFoodService)
         guard let food = food else { return }
+        
         XCTAssertTrue(fakeFoodService.getWasCalled)
         XCTAssertEqual(viewController.dataSource.count, food.count)
     }
