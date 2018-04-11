@@ -32,17 +32,13 @@ class Fake_FoodService: Gettable {
 class PONTests: XCTestCase {
     
     var viewController: ViewController!
-    var food: [Food]!
     
     override func setUp() {
         super.setUp()
         
-        food = [Food(), Food(), Food(), Food()]
-        
         viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! ViewController?
     }
   
-    
     override func tearDown() {
         viewController = nil
         super.tearDown()
@@ -52,10 +48,9 @@ class PONTests: XCTestCase {
         // inject
         let fakeFoodService = Fake_FoodService()
         viewController.getFood(fromService: fakeFoodService)
-        guard let food = food else { return }
         
         XCTAssertTrue(fakeFoodService.getWasCalled)
-        XCTAssertEqual(viewController.dataSource.count, food.count)
+        XCTAssertEqual(viewController.dataSource.count, fakeFoodService.food.count)
     }
     
 }
